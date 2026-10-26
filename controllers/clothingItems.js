@@ -32,16 +32,30 @@ const createItem = (req, res) => {
 };
 
 const deleteItem = (req, res) => {
-  ClothingItem.findByIdAndDelete(req.params.itemId)
+  ClothingItem.findById(req.params.itemId)
     .orFail()
-    .then((item) => res.send(item))
+    .then((item) => {
+      if (item.owner.toString() !== req.user._id.toString()) {
+        return res.status(403).send({
+          message: "You cannot delete another user's item",
+        });
+      }
+
+      return ClothingItem.findByIdAndDelete(req.params.itemId).then(
+        (deletedItem) => res.send(deletedItem)
+      );
+    })
     .catch((err) => {
       if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid item ID" });
+        return res.status(BAD_REQUEST).send({
+          message: "Invalid item ID",
+        });
       }
 
       if (err.name === "DocumentNotFoundError") {
-        return res.status(NOT_FOUND).send({ message: "Item not found" });
+        return res.status(NOT_FOUND).send({
+          message: "Item not found",
+        });
       }
 
       return res.status(SERVER_ERROR).send({

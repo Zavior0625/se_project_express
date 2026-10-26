@@ -11,14 +11,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db");
 
 app.use(express.json());
 
-// Temporary authorization middleware
-app.use((req, res, next) => {
-  req.user = {
-    _id: "6acfdb7f0dc9f8fd4ef9c191",
-  };
-  next();
-});
-
 // Routes
 app.use("/", routes);
 
