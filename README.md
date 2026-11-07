@@ -131,3 +131,7 @@ Remove a like
 Project Status
 
 The back-end API includes user management, clothing item management, data validation, and error handling. The project uses a temporary authorization middleware for clothing item operations.
+
+## Project Pitch Video
+ 
+ Check out [https://drive.google.com/file/d/1mOojqZ06D-6HjpLx70XGWrxB-YsoTeMp/view?usp=sharing](ADD_LINK_HERE)
