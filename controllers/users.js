@@ -4,7 +4,13 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { JWT_SECRET } = require("../utils/config");
 
-const { BAD_REQUEST, NOT_FOUND, SERVER_ERROR } = require("../utils/errors");
+const {
+  BAD_REQUEST,
+  UNAUTHORIZED,
+  NOT_FOUND,
+  CONFLICT,
+  SERVER_ERROR,
+} = require("../utils/errors");
 
 const createUser = (req, res) => {
   const { name, avatar, email, password } = req.body;
@@ -33,7 +39,7 @@ const createUser = (req, res) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        return res.status(409).send({ message: "Email already exists" });
+        return res.status(CONFLICT).send({ message: "Email already exists" });
       }
 
       if (err.name === "ValidationError") {
@@ -69,7 +75,7 @@ const login = (req, res) => {
       return res.send({ token });
     })
     .catch(() =>
-      res.status(401).send({
+      res.status(UNAUTHORIZED).send({
         message: "Incorrect email or password",
       })
     );
