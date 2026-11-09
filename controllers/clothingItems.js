@@ -1,6 +1,11 @@
 const ClothingItem = require("../models/clothingItem");
 
-const { BAD_REQUEST, NOT_FOUND, SERVER_ERROR } = require("../utils/errors");
+const {
+  BAD_REQUEST,
+  FORBIDDEN,
+  NOT_FOUND,
+  SERVER_ERROR,
+} = require("../utils/errors");
 
 const getItems = (req, res) => {
   ClothingItem.find({})
@@ -36,7 +41,7 @@ const deleteItem = (req, res) => {
     .orFail()
     .then((item) => {
       if (item.owner.toString() !== req.user._id.toString()) {
-        return res.status(403).send({
+        return res.status(FORBIDDEN).send({
           message: "You cannot delete another user's item",
         });
       }
