@@ -1,4 +1,12 @@
-WTWR (What to Wear?): Back End
+# WTWR (What to Wear?)
+
+## Backend Repository
+
+The WTWR frontend connects to an Express.js and MongoDB backend for user authentication, profile management, clothing item management, and likes.
+
+Backend GitHub Repository:
+https://github.com/Zavior0625/se_project_express
+
 
 Project Description
 

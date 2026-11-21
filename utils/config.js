@@ -1,3 +1,9 @@
-const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
+const { NODE_ENV = "development", JWT_SECRET } = process.env;
 
-module.exports = { JWT_SECRET };
+if (NODE_ENV === "production" && !JWT_SECRET) {
+  throw new Error("JWT_SECRET must be set in production");
+}
+
+module.exports = {
+  JWT_SECRET: JWT_SECRET || "dev-secret",
+};
