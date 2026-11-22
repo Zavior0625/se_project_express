@@ -142,4 +142,4 @@ The back-end API includes user management, clothing item management, data valida
 
 ## Project Pitch Video
  
- Check out [https://drive.google.com/file/d/1mOojqZ06D-6HjpLx70XGWrxB-YsoTeMp/view?usp=sharing](ADD_LINK_HERE)
+ Check out [https://drive.google.com/file/d/18h5IQYcy-a49h-KcQ5tPMDIl9Ylva6g2/view?usp=drive_link](ADD_LINK_HERE)g
